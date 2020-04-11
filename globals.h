@@ -2,10 +2,24 @@
 #define _GLOBAL_H_
 
 #include <stdio.h>
+#include <stdlib.h>
 
 /*******************************************
  *  SOME VARIABLES USED THROUGH ALL FILES  *
  *******************************************/
+
+#define DEBUG
+
+#ifdef DEBUG
+    #define ASSERT(condition, errMsg) \
+        if (!(condition)) {\
+            fprintf(stderr, "ASSERT faild! in %s:%d in function %s(): %s\n", \
+            __FILE__, __LINE__, __func__, errMsg);\
+            abort();\
+        }
+#else
+    #define ASSERT(condition, errMsg) ((void)0)
+#endif
 
 #ifndef FALSE
 #define FALSE 0
@@ -15,6 +29,7 @@
 #define TRUE 1
 #endif
 
+
 extern FILE *source;
 extern FILE *listing;
 
@@ -22,14 +37,6 @@ extern int Error;
 
 /* line number when listing */
 extern int lineno;
-
-/*********************************************
- *  SOME FLAGS USED FOR SELECTIVE COMPILING  *
- *********************************************/
-
-#define NO_PARSE FALSE
-#define NO_ANALYZE TRUE
-#define NO_CODE TRUE
 
 /* source code will be printed during scanning if echoSource = True */
 extern int echoSource;
@@ -56,9 +63,10 @@ typedef enum {
 } TokenType;
 
 
-/***********
- *  PARSE  *
- ***********/
+/*******************************
+ *  PARSE AND SEMATIC ANALYZE  *
+ *******************************/
+
 
 typedef enum {StmtK, ExpK} NodeKind;
 typedef enum {IfK, RepeatK, AssignK, ReadK, WriteK} StmtKind;
@@ -73,8 +81,8 @@ typedef struct treeNode {
     struct treeNode *sibling;
     struct treeNode *child[MAXCHILDREN];
     int lineno;
-    NodeKind nodeKind;
     /* node kind */
+    NodeKind nodeKind;
     union {
         StmtKind stmt;
         ExpKind exp;

@@ -1,0 +1,49 @@
+stmt-seq → stmt { ; stmt }
+
+
+stmt → if-stmt | repeat-stmt | assign-stmt | read-stmt | write-stmt
+
+
+if-stmt → if exp then stmt-seq [ else stmt-seq ] end
+##
+    if not typeEqual(exp, Boolean) then typeError(stmt)
+
+
+repeat-stmt → repeat stmt-seq until exp
+##
+    if not typeEqual(exp, Boolean) then typeError(stmt)
+
+
+assign-stmt → id := exp
+##
+    lookup() and insert()
+    if not typeEqual(exp.type, Integer) then typeError(assign-stmt)
+
+
+read-stmt → read id
+##
+    lookup() and insert()
+    if not typeEqual(id, Integer) then typeError(read-stmt)
+
+
+write-stmt → write id
+##
+    lookup() and insert()
+    if not typeEqual(id, Integer) then typeError(read-stmt)
+
+
+exp1 → exp2 + exp3 | exp2 - exp3 | exp2 * exp3
+##
+    if not typeEqal(exp2, Integer) and typeEqual(exp3, Integer) then typeError(exp1)
+    exp1.type = Integer
+
+
+exp1 → exp2 < exp3 | exp2 = exp3
+##
+    if not typeEqal(exp2, Integer) and typeEqual(exp3, Integer) then typeError(exp1)
+    exp1.type = Boolean
+
+
+exp → number
+##
+    exp.type = Integer

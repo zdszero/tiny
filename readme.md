@@ -1,6 +1,6 @@
 # TINY
 
-TINY, a very very simple programming language according to the book 《complier constrction principles and practice》
+TINY, a very simple programming language according to the book 《complier constrction principles and practice》
 
 ## scanning
 
@@ -66,3 +66,23 @@ IfK, RepeatK, AssignK, ReadK, WriteK
 
 ConstK, OpK, IdK
 
+## sematic analysis
+
+- sematic rules
+
+| Grammar Rule | Sematic Rule |
+| :-: | :-: |
+| stmt-seq → stmt { ; stmt } |   |
+| stmt → if-stmt \| repeat-stmt \| assign-stmt \| read-stmt \| write-stmt |   |
+| if-stmt → **if** exp **then** stmt-seq [ **else** stmt-seq ] **end** |   |
+| repeat-stmt → **repeat** stmt-seq **until** exp |   |
+| assign-stmt → **id** **:=** exp |   |
+| read-stmt → **read** **id** |   |
+| write-stmt → **write** **id** |   |
+| exp → simple-exp \| simple-exp comparision-op simple-exp |   |
+| simple-exp → simple-exp addop term \| term |   |
+| term → term mulop factor \| factor |   |
+| factor → ( exp ) \| **number** \| **id** |   |
+| comparison-op → **<** \| **=** |   |
+| addop → **+** \| **-** |   |
+| mulop → * |   |

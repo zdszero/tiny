@@ -33,7 +33,8 @@ static void match(TokenType expected) {
         syntaxError("unexpected token → ");
         /* error */
         printToken(token, tokenString);
-        fprintf(listing, "    ");
+        fprintf(listing, "Expected Token: ");
+        printToken(expected, "");
     }
 }
 
@@ -136,7 +137,7 @@ static TreeNode *assign_stmt(void) {
 static TreeNode *read_stmt(void) {
     TreeNode *t = newStmtNode(ReadK);
     match(READ);
-    if (token == ID)
+    if (t != NULL && token == ID)
         t->attr.name = copyString(tokenString);
     match(ID);
     return t;
@@ -145,10 +146,9 @@ static TreeNode *read_stmt(void) {
 static TreeNode *write_stmt(void) {
     TreeNode *t = newStmtNode(WriteK);
     match(WRITE);
-    if (token == ID)
-        t->attr.name = copyString(tokenString);
-    match(ID);
-    return t; 
+    if (t != NULL)
+        t->child[0] = expr();
+    return t;
 }
 static TreeNode *expr(void) {
     TreeNode *t = simple_exp();

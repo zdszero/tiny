@@ -140,7 +140,7 @@ void printTree(TreeNode *root) {
                     fprintf(listing, "Read: %s\n", root->attr.name);
                     break;
                 case WriteK:
-                    fprintf(listing, "Write: %s\n", root->attr.name);
+                    fprintf(listing, "Write:\n");
                     break;
                 default:
                     fprintf(listing, "Unknown kind\n");
