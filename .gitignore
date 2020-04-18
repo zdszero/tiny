@@ -1,0 +1,8 @@
+# ignore all object files
+*.o
+
+# ignore all files in the build dir
+build/
+
+# ignore all pdf files in doc dir and any of its subdirs
+doc/**/*.pdf
