@@ -1,6 +1,13 @@
 # ignore all object files
 *.o
 
+# all intermediate code
+*.tm
+
+tiny
+
+tm
+
 # ignore all files in the build dir
 build/
 
