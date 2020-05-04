@@ -97,6 +97,50 @@ end
 | exp1 → exp2 < exp3 \| exp2 = exp3 | if not typeEqal(exp2, Integer) and typeEqual(exp3, Integer) then typeError(exp1)<br>; exp1.type = Boolean |
 | exp → number | exp.type = Integer |
 
+## runtime enviroment
+
+8 registers are used, reg[7] is PC
+
+![runtime](./img/runtime.png "run time enviroment")
+
+temp values are stored at the top the memory, variables are stored at bottom of momory
+
+## code generation
+
++ RO instructions (regster only)
+
+| Format | opcode r,s,t                    |
+| :-:    | :-:                             |
+| HALT   | stop execution                  |
+| IN     | reg[r] <- read value from stdin |
+| OUT    | reg[r] -> write value to stdout |
+| ADD    | reg[r] = reg[s] + reg[t]        |
+| SUB    | reg[r] = reg[s] - reg[t]        |
+| MUL    | reg[r] = reg[s] * reg[t]        |
+| DIV    | reg[r] = reg[s] / reg[t]        |
+
++ RM instructions (register memory)
+
+| Format | opcode r, d(s)   |
+| :-:    | :-:              |
+| LD     | reg[r] = dMem[a] |
+| LDA    | reg[r] = a       |
+| LDC    | reg[r] = d       |
+| ST     | dMem[a] = reg[r] |
+
+a (address) = dMem[s] + d (offset)
+
++ RA instructions (register address)
+
+| Format | opcode r, d(s)                        |
+| :-:    | :-:                                   |
+| JLT    | if (reg[r] < 0) then reg[PC_REG] = a  |
+| JGE    | if (reg[r] >= 0) then reg[PC_REG] = a |
+| JGT    | if (reg[r] > 0) then reg[PC_REG] = a  |
+| JEQ    | if (reg[r] == 0) then reg[PC_REG] = a |
+| JNE    | if (reg[r] != 0) then reg[PC_REG] = a |
+
+
 ## what's more
 
 I highly recommend the book 《Compiler Construction: principles and practice》, which I think

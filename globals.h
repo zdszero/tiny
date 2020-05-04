@@ -32,6 +32,7 @@
 
 extern FILE *source;
 extern FILE *listing;
+extern FILE *code;
 
 extern int Error;
 

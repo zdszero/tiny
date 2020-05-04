@@ -35,6 +35,7 @@ static int hash(char *key) {
 
 void st_insert(char *name, int lineno, int memloc) {
     int loc = hash(name);
+    /* try to find the available location */
     while (hashTable[loc] != NULL && strcmp(hashTable[loc]->name, name) != NULL) {
         loc++;
     }
@@ -65,9 +66,9 @@ int st_lookup(char *name) {
         loc++;
     }
     if (hashTable[loc] == NULL)
-        return 0;
+        return -1;
     else
-        return loc;
+        return hashTable[loc]->memloc;
 }
 
 void printSymTal(FILE *listing) {
