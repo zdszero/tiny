@@ -12,13 +12,25 @@
 void printToken(TokenType token, char *tokenString) {
     switch (token) {
         case IF:
+            fprintf(listing, "RESERVED WORD: if\n");
+            break;
         case THEN:
+            fprintf(listing, "RESERVED WORD: then\n");
+            break;
         case END:
+            fprintf(listing, "RESERVED WORD: end\n");
+            break;
         case REPEAT:
+            fprintf(listing, "RESERVED WORD: repeat\n");
+            break;
         case UNTIL:
+            fprintf(listing, "RESERVED WORD: until\n");
+            break;
         case READ:
+            fprintf(listing, "RESERVED WORD: read\n");
+            break;
         case WRITE:
-            fprintf(listing, "RESERVED WORD: %s\n", tokenString);
+            fprintf(listing, "RESERVED WORD: write\n");
             break;
         case ID:
             fprintf(listing, "IDENTIFIER: %s\n", tokenString);

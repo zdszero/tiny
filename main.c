@@ -14,9 +14,9 @@
  *  SOME FLAGS USED FOR SELECTIVE COMPILING  *
  *********************************************/
 
-int no_parse   = FALSE;
-int no_analyze = FALSE;
-int no_code    = FALSE;
+int no_parse   = TRUE;;
+int no_analyze = TRUE;
+int no_code    = TRUE;
 
 FILE *listing;
 FILE *source;
@@ -68,7 +68,6 @@ usage:\n\
                     only_one  = FALSE;
                 else
                     only_one  = TRUE;
-                no_parse      = TRUE;
                 echoSource    = TRUE;
                 traceScan     = TRUE;
                 break;
@@ -78,7 +77,6 @@ usage:\n\
                 else
                     only_one  = TRUE;
                 no_parse      = FALSE;
-                no_analyze    = TRUE;
                 traceParse    = TRUE;
                 break;
             case 'a':

@@ -4,12 +4,8 @@
 # all intermediate code
 *.tm
 
+# compiler
 tiny
 
+# vm
 tm
-
-# ignore all files in the build dir
-build/
-
-# ignore all pdf files in doc dir and any of its subdirs
-doc/**/*.pdf

@@ -1,0 +1,21 @@
+{ fibo array tiny program }
+read n;
+if 0 < n then
+    a := 1;
+    b := 1;
+    index := 1;
+    repeat
+        if index = 1 then
+            write a
+        end;
+        if index = 2 then
+            write b
+        else
+            c := a + b;
+            a := b;
+            b := c;
+            write c
+        end;
+        index := index + 1
+    until index = n
+end
