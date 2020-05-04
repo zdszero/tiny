@@ -2,7 +2,15 @@
 
 TINY, a very simple programming language for studying purpose according to the book 《complier constrction principles and practice》
 
-## features
++ [features](#features)
++ [scanning](#scanning)
++ [parsing](#parsing)
++ [sematic analysis](#analysis)
++ [runtime enviroment](#runtime)
++ [code generation](#code)
++ [what's more](#more)
+
+## <span id='features'>features</span>
 
 - comment: { comment should be in curly braces }
 
@@ -22,7 +30,7 @@ TINY, a very simple programming language for studying purpose according to the b
 
 - IO: read ID; write ID;
 
-## scanning
+## <span id='scanning'>scanning</span>
 
 - tokens in tiny
 
@@ -43,7 +51,7 @@ TINY, a very simple programming language for studying purpose according to the b
 
 ![dfa](./img/dfa.png)
 
-## parsing
+## <span id='parsing'>parsing</span>
 
 - grammar in EBNF
 
@@ -82,7 +90,7 @@ end
 
 ![syntax tree](./img/tree.png)
 
-## sematic analysis
+## <span id='analysis'>sematic analysis</span>
 
 - sematic rules
 
@@ -97,7 +105,7 @@ end
 | exp1 → exp2 < exp3 \| exp2 = exp3 | if not typeEqal(exp2, Integer) and typeEqual(exp3, Integer) then typeError(exp1)<br>; exp1.type = Boolean |
 | exp → number | exp.type = Integer |
 
-## runtime enviroment
+## <span id='runtime'>runtime enviroment</span>
 
 8 registers are used, reg[7] is PC
 
@@ -105,7 +113,7 @@ end
 
 temp values are stored at the top the memory, variables are stored at bottom of momory
 
-## code generation
+## <span id='code'>code generation</span>
 
 + RO instructions (regster only)
 
@@ -141,7 +149,7 @@ a (address) = dMem[s] + d (offset)
 | JNE    | if (reg[r] != 0) then reg[PC_REG] = a |
 
 
-## what's more
+## <span id='more'>what's more</span>
 
 I highly recommend the book 《Compiler Construction: principles and practice》, which I think
 is the best book for biginners who want to study compliers.
