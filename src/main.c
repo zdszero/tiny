@@ -54,9 +54,9 @@ int main(int argc, char *argv[])
             case 'h':
                 printf("compiling options:\n\
 -s --scan             scan only\n\
--p --parse            scan and parse only\n\
--a --analyze          scan and parse and analyze\n\
--c --code             scan and parse and analyze and generate intermediate code\n\
+-p --parse            scan and parse\n\
+-a --analyze          scan, parse and analyze\n\
+-c --code             scan, parse, analyze and generate intermediate code\n\
 -f --file {filenae}   input tiny file\n\
 usage:\n\
 ./tiny source_code -[option]\n");

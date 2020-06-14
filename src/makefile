@@ -18,5 +18,5 @@ tm: tm.c
 
 .PHONY: clean
 clean:
-	@echo "start cleaning"
+	@echo "cleaning object files"
 	rm *.o

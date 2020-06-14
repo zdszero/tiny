@@ -8,7 +8,7 @@ TINY, a very simple programming language for studying purpose according to the b
 + [sematic analysis](#analysis)
 + [runtime enviroment](#runtime)
 + [code generation](#code)
-+ [what's more](#more)
++ [more](#code)
 
 ## <span id='features'>features</span>
 
