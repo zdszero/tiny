@@ -21,13 +21,11 @@ typedef struct bucketList {
 
 static BucketList* hashTable[SIZE] = {NULL};
 
-/* transform char * into loction in hash table */
+/* transform char * into loction which is int in hash table */
 static int hash(char *key) {
     int temp = 0;
-    int i = 0;
-    while (key[i] != '\0') {
+    for (int i = 0; key[i] != '\0'; i++) {
         temp = ((temp << SHIFT) + key[i]) % SIZE;
-        i++;
     }
     return temp;
 }
@@ -36,8 +34,8 @@ static int hash(char *key) {
 void st_insert(char *name, int lineno, int memloc) {
     int loc = hash(name);
     /* try to find the available location */
-    while (hashTable[loc] != NULL && strcmp(hashTable[loc]->name, name) != NULL) {
-        loc++;
+    while (hashTable[loc] != NULL && strcmp(hashTable[loc]->name, name) != 0) {
+        loc = (loc + 1) % SIZE;
     }
     /* variable not found */
     if (hashTable[loc] == NULL) {
@@ -60,9 +58,10 @@ void st_insert(char *name, int lineno, int memloc) {
     }
 }
 
+// return -1 if symbol cannot be found
 int st_lookup(char *name) {
     int loc = hash(name);
-    while (hashTable[loc] != NULL && strcmp(hashTable[loc]->name, name) != NULL) {
+    while (hashTable[loc] != NULL && strcmp(hashTable[loc]->name, name) != 0) {
         loc++;
     }
     if (hashTable[loc] == NULL)
@@ -75,13 +74,13 @@ void printSymTal(FILE *listing) {
     fprintf(listing, "%s\n", "Variable name  Location  Line Numbers");
     fprintf(listing, "%s\n", "-------------  --------  ------------");
     int i;
-    for (i=0; i<SIZE; i++) {
+    for (i = 0; i < SIZE; i++) {
         if (hashTable[i] != NULL) {
             BucketList *b = hashTable[i];
             LineList *l = b->line;
             fprintf(listing, "%-13s  ", b->name);
             fprintf(listing, "%-8d  ", b->memloc);
-            while (l->next != NULL) {
+            while (l != NULL) {
                 fprintf(listing, "%d ", l->lineno);
                 l = l->next;
             }

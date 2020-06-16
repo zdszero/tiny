@@ -17,7 +17,7 @@ static void traverse(TreeNode *t,
     if (t == NULL)
         return;
     preProc(t);
-    for (int i=0; i<MAXCHILDREN; i++) {
+    for (int i = 0; i < MAXCHILDREN; i++) {
         traverse(t->child[i], preProc, postProc);
     }
     postProc(t);
@@ -34,10 +34,11 @@ static void insertNode(TreeNode *t) {
             switch (t->kind.stmt) {
                 case AssignK:
                 case ReadK:
+                    printf("insert %s at line %d\n", t->attr.name, t->lineno);
                     if (st_lookup(t->attr.name) == -1) {
-                        st_insert(t->attr.name, t->lineno, location++);
+                        st_insert(t->attr.name, t->lineno, ++location);
                     } else {
-                        st_insert(t->attr.name, t->lineno, 0);
+                        st_insert(t->attr.name, t->lineno, location);
                     }
                     break;
                 default:
@@ -46,10 +47,11 @@ static void insertNode(TreeNode *t) {
         case ExpK:
             switch (t->kind.exp) {
                 case IdK:
+                    printf("insert %s at line %d\n", t->attr.name, t->lineno);
                     if (st_lookup(t->attr.name) == -1) {
-                        st_insert(t->attr.name, t->lineno, location++);
+                        st_insert(t->attr.name, t->lineno, ++location);
                     } else {
-                        st_insert(t->attr.name, t->lineno, 0);
+                        st_insert(t->attr.name, t->lineno, location);
                     }
                     break;
                 default:

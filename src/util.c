@@ -125,9 +125,9 @@ char *copyString(char *src) {
     return dst;
 }
 
-static void printIndent(unsigned level) {
-    for (unsigned i = 0; i < level; ++i) {
-        printf("  ");
+static void printIndent(int level) {
+    for (int i = 0; i < level; ++i) {
+        printf("| ");
     }
 }
 

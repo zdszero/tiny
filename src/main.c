@@ -119,7 +119,7 @@ usage:\n\
         while (getToken() != ENDFILE);
     } else {
         TreeNode *syntaxTree = parse();
-        if (traceParse == TRUE) {
+        if (!Error && traceParse == TRUE) {
             fprintf(listing, "\nSyntex Tree:\n");
             printTree(syntaxTree);
         }

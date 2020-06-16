@@ -88,7 +88,6 @@ typedef struct treeNode {
         StmtKind stmt;
         ExpKind exp;
     } kind;
-    /* attributes for nonterminals */
     union {
         TokenType op;
         int val;
