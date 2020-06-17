@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
 -p --parse            scan and parse\n\
 -a --analyze          scan, parse and analyze\n\
 -c --code             scan, parse, analyze and generate intermediate code\n\
--f --file {filenae}   input tiny file\n\
+-f --file <filename>  input tiny file\n\
 usage:\n\
 ./tiny source_code -[option]\n");
                 exit(0);

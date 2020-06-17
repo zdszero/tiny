@@ -1,10 +1,3 @@
-/****************************************************/
-/* File: tm.c                                       */
-/* The TM ("Tiny Machine") computer                 */
-/* Compiler Construction: Principles and Practice   */
-/* Kenneth C. Louden                                */
-/****************************************************/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -556,10 +549,11 @@ int doCommand (void)
 } /* doCommand */
 
 
-/********************************************/
-/* E X E C U T I O N   B E G I N S   H E R E */
-/********************************************/
+/*****************************/
+/* EXECUTION   BEGINS   HERE */
+/*****************************/
 
+int
 main( int argc, char * argv[] )
 { if (argc != 2)
   { printf("usage: %s <filename>\n",argv[0]);

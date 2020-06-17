@@ -33,29 +33,12 @@ static void insertNode(TreeNode *t) {
         case StmtK:
             switch (t->kind.stmt) {
                 case AssignK:
-                    printf("AssignK: insert %s at line %d\n", t->attr.name, t->lineno);
-                    if (st_lookup(t->attr.name) == -1) {
-                        st_insert(t->attr.name, t->lineno, ++location);
-                    } else {
-                        st_insert(t->attr.name, t->lineno, location);
-                    }
-                    break;
                 case ReadK:
-                    printf("ReadK: insert %s at line %d\n", t->attr.name, t->lineno);
                     if (st_lookup(t->attr.name) == -1) {
                         st_insert(t->attr.name, t->lineno, ++location);
                     } else {
                         st_insert(t->attr.name, t->lineno, location);
                     }
-                    break;
-                case WriteK:
-                    printf("WriteK\n");
-                    break;
-                case IfK:
-                    printf("IfK\n");
-                    break;
-                case RepeatK:
-                    printf("RepeatK\n");
                     break;
                 default:
                     break;
@@ -64,18 +47,11 @@ static void insertNode(TreeNode *t) {
         case ExpK:
             switch (t->kind.exp) {
                 case IdK:
-                    printf("IdK insert %s at line %d\n", t->attr.name, t->lineno);
                     if (st_lookup(t->attr.name) == -1) {
                         st_insert(t->attr.name, t->lineno, ++location);
                     } else {
                         st_insert(t->attr.name, t->lineno, location);
                     }
-                    break;
-                case ConstK:
-                    printf("ConstK\n");
-                    break;
-                case OpK:
-                    printf("OpK\n");
                     break;
                 default:
                     break;

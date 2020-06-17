@@ -19,7 +19,6 @@ void emitRO(char *op, int r, int s, int t, char *c) {
     fprintf(code, "%3d:  %5s  %d,%d,%d", emitLoc++, op, r, s, t);
     if (traceCode)
         fprintf(code, "\t%s\n", c);
-    fprintf(code, "\n");
     if (highEmitLoc < emitLoc)
         highEmitLoc = emitLoc;
 }
@@ -29,7 +28,6 @@ void emitRM(char *op, int r, int d, int s, char *c) {
     fprintf(code, "%3d:  %5s  %d,%d(%d)", emitLoc++, op, r, d, s);
     if (traceCode)
         fprintf(code, "\t%s\n", c);
-    fprintf(code, "\n");
     if (highEmitLoc < emitLoc)
         highEmitLoc = emitLoc;
 }
@@ -59,7 +57,6 @@ void emitRM_Abs(char *op, int r, int a, char *c) {
     emitLoc++;
     if (traceCode)
         fprintf(code, "\t%s\n", c);
-    fprintf(code, "\n");
     if (highEmitLoc < emitLoc)
         highEmitLoc = emitLoc;
 }

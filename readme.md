@@ -62,9 +62,9 @@ TINY, a very simple programming language for studying purpose according to the b
 > + assign-stmt → **id** **:=** exp
 > + read-stmt → **read** **id**
 > + write-stmt → **write** **id**
-> + exp → simple-exp | simple-exp comparision-op simple-exp
-> + simple-exp → simple-exp addop term | term
-> + term → term mulop factor | factor
+> + exp → simple-exp [ comparision-op simple-exp ]
+> + simple-exp → term { addop term }
+> + term → { factor } mulop factor
 > + factor → **(** exp **)** | **number** | **id**
 > + comparison-op → **<** | **=**
 > + addop → **+** | **-**
@@ -129,14 +129,14 @@ temp values are stored at the top the memory, variables are stored at bottom of 
 
 + RM instructions (register memory)
 
-| Format | opcode r, d(s)   |
+| Format | opcode r, s(t)   |
 | :-:    | :-:              |
 | LD     | reg[r] = dMem[a] |
 | LDA    | reg[r] = a       |
-| LDC    | reg[r] = d       |
+| LDC    | reg[r] = s       |
 | ST     | dMem[a] = reg[r] |
 
-a (address) = dMem[s] + d (offset)
+a (address) = reg[t] + s
 
 + RA instructions (register address)
 

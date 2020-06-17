@@ -71,6 +71,35 @@ static TreeNode *stmt_sequence(void) {
 static TreeNode *statement(void) {
     TreeNode *t = NULL;
     switch (token) {
+        /* abnormal condition */
+        case PLUS:
+        case MINUS:
+        case TIMES:
+            syntaxError("operator without a previous operand\n");
+            match(token);
+            match(ID);
+            statement();
+            break;
+        case EQ:
+        case LT:
+            syntaxError("comparison without a previous operand\n");
+            match(token);
+            match(ID);
+            statement();
+            break;
+        case THEN:
+            syntaxError("then without a previous if\n");
+            match(THEN);
+            if (t != NULL)
+                t->child[1] = stmt_sequence();
+            if (token == ELSE) {
+                match(ELSE);
+                if (t != NULL)
+                    t->child[2] = stmt_sequence();
+            }
+            match(END);
+            break;
+        /* normal condition */
         case IF:
             t = if_stmt();
             break;
