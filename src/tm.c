@@ -76,7 +76,7 @@ typedef struct {
 /******** vars ********/
 int iloc = 0 ;
 int dloc = 0 ;
-int traceflag = FALSE;
+int traceflag = TRUE;
 int icountflag = FALSE;
 
 INSTRUCTION iMem [IADDR_SIZE];
@@ -324,8 +324,12 @@ STEPRESULT stepTM (void)
       r = currentinstruction.iarg1 ;
       s = currentinstruction.iarg3 ;
       m = currentinstruction.iarg2 + reg[s] ;
-      if ( (m < 0) || (m > DADDR_SIZE))
+      if (currentinstruction.iop == opLDC)
+          printf("r: %d  s: %d  t: %d  m: %d\n",
+currentinstruction.iarg1, currentinstruction.iarg2, currentinstruction.iarg3, m);
+      if ( (m < 0) || (m > DADDR_SIZE)) {
          return srDMEM_ERR ;
+      }
       break;
 
     case opclRA :
@@ -378,7 +382,10 @@ STEPRESULT stepTM (void)
     case opST :    dMem[m] = reg[r] ;  break;
 
     /*************** RA instructions ********************/
-    case opLDA :    reg[r] = m ; break;
+    case opLDA :    
+        printf("   r: %d   m: %d\n", r, m);
+        reg[r] = m ; 
+        break;
     case opLDC :    reg[r] = currentinstruction.iarg2 ;   break;
     case opJLT :    if ( reg[r] <  0 ) reg[PC_REG] = m ; break;
     case opJLE :    if ( reg[r] <=  0 ) reg[PC_REG] = m ; break;
@@ -391,6 +398,14 @@ STEPRESULT stepTM (void)
   } /* case */
   return srOKAY ;
 } /* stepTM */
+
+void printRegs()
+{ for (int i = 0; i < NO_REGS; i++)
+  { printf("%1d: %4d    ", i,reg[i]);
+    if ( (i % 4) == 3 ) printf ("\n");
+  }
+
+}
 
 /********************************************/
 int doCommand (void)
@@ -482,8 +497,7 @@ int doCommand (void)
                 && (printcnt > 0) )
         { writeInstruction(iloc);
           iloc++ ;
-          printcnt-- ;
-        }
+          printcnt-- ;        }
       }
       break;
 
@@ -530,6 +544,7 @@ int doCommand (void)
       { iloc = reg[PC_REG] ;
         if ( traceflag ) writeInstruction( iloc ) ;
         stepResult = stepTM ();
+        printRegs();
         stepcnt++;
       }
       if ( icountflag )
