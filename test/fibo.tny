@@ -10,12 +10,13 @@ if 0 < n then
         end;
         if index = 2 then
             write b
-        else
+        end;
+        if 2 < index then
             c := a + b;
             a := b;
             b := c;
             write c
         end;
         index := index + 1
-    until index = n
+    until index = n+1
 end
