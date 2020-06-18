@@ -292,6 +292,7 @@ def do_command() -> bool:
                 step_count += 1
             if DEBUG:
                 print('Step Result: {}'.format(StepResultTab[step_result]))
+            return False
         else:
             while step_count > 0 and step_result == StepResult.index('OKAY'):
                 iloc = regs[PC_REG]
